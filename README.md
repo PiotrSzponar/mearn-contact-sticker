@@ -1,4 +1,4 @@
-# Contact Keeper
+# Contact Sticker
 
 Full stack MERN contact manager with React hooks, context & JWT authentication.
 
@@ -171,7 +171,3 @@ npm run client  # React Client Only :3000
           {
             "msg": "Contact removed"
           }
-
-```
-
-```
