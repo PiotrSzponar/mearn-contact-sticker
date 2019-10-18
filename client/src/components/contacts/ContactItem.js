@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Label, List, Grid } from 'semantic-ui-react';
+import ContactContext from '../../context/contact/contactContext';
 
 const ContactItem = ({ contact }) => {
+  const contactContext = useContext(ContactContext);
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
+
   const { id, name, email, phone, url, type } = contact;
+
+  const handleDelete = () => {
+    deleteContact(id);
+    clearCurrent();
+  };
 
   return (
     <Grid.Column mobile={16} computer={8}>
@@ -17,6 +26,7 @@ const ContactItem = ({ contact }) => {
             {type}
           </Label>
           <Card.Header>{name}</Card.Header>
+          <Card.Meta>Added: </Card.Meta>
           <Card.Description>
             <List>
               {email && (
@@ -39,8 +49,22 @@ const ContactItem = ({ contact }) => {
         </Card.Content>
         <Card.Content extra>
           <Button.Group widths="2">
-            <Button compact basic color="green" content="Edit" icon="edit" />
-            <Button compact basic color="red" content="Delete" icon="times" />
+            <Button
+              compact
+              basic
+              color="grey"
+              content="Edit"
+              icon="edit"
+              onClick={() => setCurrent(contact)}
+            />
+            <Button
+              compact
+              basic
+              color="red"
+              content="Delete"
+              icon="times"
+              onClick={handleDelete}
+            />
           </Button.Group>
         </Card.Content>
       </Card>

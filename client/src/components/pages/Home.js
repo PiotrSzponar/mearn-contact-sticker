@@ -8,7 +8,7 @@ const Home = () => {
     <Grid centered>
       <Grid.Column mobile={16} tablet={8} computer={5}>
         <Header as="h3" attached="top">
-          Add/Edit Contact
+          Contact Details
         </Header>
         <Segment attached>
           <ContactForm />
