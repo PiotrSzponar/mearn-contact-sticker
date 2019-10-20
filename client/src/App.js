@@ -11,13 +11,18 @@ const App = () => {
     <ContactState>
       <Router>
         <Navbar />
-        <Container
-          fluid
-          style={{ padding: '20px 50px', maxWidth: 1200, margin: '0 auto' }}
-        >
-          <Switch>
-            <Route exact path="/" component={Home} />
-          </Switch>
+        <Container fluid>
+          <div
+            style={{
+              padding: '20px 50px',
+              maxWidth: '1200px',
+              margin: '0 auto',
+            }}
+          >
+            <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </div>
         </Container>
       </Router>
     </ContactState>

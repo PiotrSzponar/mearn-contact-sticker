@@ -16,7 +16,7 @@ const ContactForm = () => {
     type: 'personal',
   });
 
-  const { id, name, email, phone, url } = contact;
+  const { name, email, phone, url } = contact;
 
   const clearForm = () => {
     setContact({
