@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Menu, Header, Icon, Button } from 'semantic-ui-react';
+import { Menu, Header, Icon, Button, Popup } from 'semantic-ui-react';
 
 const Navbar = ({ title, subtitle, icon }) => {
   return (
@@ -19,9 +19,24 @@ const Navbar = ({ title, subtitle, icon }) => {
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>
-          <Link to="sign">
-            <Button primary>Log-in</Button>
-          </Link>
+          <Popup
+            trigger={
+              <Link to="/register">
+                <Button color="blue" primary icon="user plus" />
+              </Link>
+            }
+            content="Sign Up"
+            position="bottom right"
+          />
+          <Popup
+            trigger={
+              <Link to="/login">
+                <Button basic inverted icon="sign-in" />
+              </Link>
+            }
+            content="Log In"
+            position="bottom right"
+          />
         </Menu.Item>
       </Menu.Menu>
     </Menu>
