@@ -1,6 +1,14 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Label, List, Grid } from 'semantic-ui-react';
+import {
+  Button,
+  Icon,
+  Card,
+  Label,
+  List,
+  Grid,
+  Popup,
+} from 'semantic-ui-react';
 import ContactContext from '../../context/contact/contactContext';
 
 const ContactItem = ({ contact }) => {
@@ -25,7 +33,27 @@ const ContactItem = ({ contact }) => {
           >
             {type}
           </Label>
-          <Card.Header>{name}</Card.Header>
+          <Card.Header>
+            {name} &nbsp;{' '}
+            <Popup
+              hoverable
+              position="bottom center"
+              trigger={<Icon name="edit" color="grey" />}
+            >
+              <Button
+                color="yellow"
+                content="Edit"
+                icon="pencil alternate"
+                onClick={() => setCurrent(contact)}
+              />
+              <Button
+                color="red"
+                content="Delete"
+                icon="times"
+                onClick={handleDelete}
+              />
+            </Popup>
+          </Card.Header>
           <Card.Meta>Added: </Card.Meta>
           <Card.Description>
             <List>
@@ -46,26 +74,6 @@ const ContactItem = ({ contact }) => {
               )}
             </List>
           </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <Button.Group widths="2">
-            <Button
-              compact
-              basic
-              color="grey"
-              content="Edit"
-              icon="edit"
-              onClick={() => setCurrent(contact)}
-            />
-            <Button
-              compact
-              basic
-              color="red"
-              content="Delete"
-              icon="times"
-              onClick={handleDelete}
-            />
-          </Button.Group>
         </Card.Content>
       </Card>
     </Grid.Column>

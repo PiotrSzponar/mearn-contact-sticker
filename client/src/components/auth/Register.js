@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Grid,
@@ -9,8 +9,13 @@ import {
   Form,
   Message,
 } from 'semantic-ui-react';
+import AlertContext from '../../context/alert/alertContext';
 
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
+
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -25,7 +30,13 @@ const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('register');
+    if (password !== password2) {
+      setAlert('Passwords do not match.', 'error');
+    } else if (password.length < 6) {
+      setAlert('Password should contain at least 6 characters.', 'error');
+    } else {
+      console.log('register');
+    }
   };
 
   return (
@@ -55,6 +66,7 @@ const Register = () => {
                 value={password}
                 placeholder="Enter password..."
                 onChange={handleChange}
+                error={password.length > 0 && password.length < 6}
                 required
               />
               <Form.Input
@@ -65,7 +77,10 @@ const Register = () => {
                 value={password2}
                 placeholder="Confirm password..."
                 onChange={handleChange}
-                error={password !== password2}
+                error={
+                  password !== password2 ||
+                  (password2.length > 0 && password2.length < 6)
+                }
                 required
               />
             </Form.Group>
